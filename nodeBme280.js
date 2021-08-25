@@ -26,7 +26,7 @@ const readSensorData = () => {
         pressure: +(data && data.pressure_hPa),
         measurementDate: new Date(),
       };
-
+      console.log("sensorData", sensorData);
       app.post("/sensorsData", async (req, res) => {
         try {
           const results = db.createSensorsData(sensorData);
