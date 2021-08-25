@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
   try {
     const sensorsData = await db.getAllSensorsData();
     console.log("sensorsData23", sensorsData)
-    res.render("index", { temperature: sensorsData[-1].temperature });
+    res.render("index", { temperature: sensorsData[sensorsData.length -1].temperature });
   } catch (err) {
     console.log("Display site error23: ", err);
   }
