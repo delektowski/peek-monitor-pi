@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const db = require("./db/sensorsData");
 
+
 // The BME280 constructor options are optional.
 //
 const options = {
