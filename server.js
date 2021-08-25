@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const db = require("./db/sensorsData")
+const startSensor = require("./nodeBme280");
 const port = 1410;
 
 //Middleware
@@ -38,4 +39,7 @@ app.get("/sensorsData", async (req, res) => {
   }
 });
 
-app.listen(port,  () => console.log(`Server is running on port: ${port}`));
+app.listen(port,  () => {
+  console.log(`Server is running on port: ${port}`)
+  startSensor()
+});
