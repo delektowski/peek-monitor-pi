@@ -12,13 +12,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use("/public", express.static("public"));
 
-app.get("/", async (req, res) => {
-  try {
-    res.render("index", { value: "mocked value" });
-  } catch (err) {
-    console.log("Display site error23: ", err);
-  }
-});
+
 
 app.get("/sensorsData", async (req, res) => {
   try {

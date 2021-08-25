@@ -1,7 +1,8 @@
 const BME280 = require("bme280-sensor");
+const axios = require("axios");
 const express = require("express");
 const app = express();
-const db = require("./db/sensorsData");
+
 
 // The BME280 constructor options are optional.
 //
@@ -20,33 +21,38 @@ const readSensorData = () => {
     .then((data) => {
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
 
-      let sensorData = {
-        temperature: +(data && data.temperature_C),
-        humidity: +(data && data.humidity),
-        pressure: +(data && data.pressure_hPa),
-        measurementDate: new Date(),
-      };
-      console.log("sensorData", sensorData);
-      app.post("/sensorsData", async (req, res) => {
-        try {
-          const results = await db.createSensorsData(sensorData);
-          res.status(201).json({ id: results[0] });
-        } catch (err) {
-          console.log("Error POST: ", err);
-        }
-      });
+        let sensorData = {
+            temperature: +(data && data.temperature_C),
+            humidity: +(data && data.humidity),
+            pressure: +(data && data.pressure_hPa),
+            measurementDate: new Date(),
+        };
 
-      // setTimeout(readSensorData, 2000);
+        axios.post('http://192.168.191.239:1410/sensorsData', sensorData)
+            .then(function (response) {
+                console.log(response);
+                app.get("/", async (req, res) => {
+                    try {
+                        res.render("index", { sensorData });
+                    } catch (err) {
+                        console.log("Display site error23: ", err);
+                    }
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
-      // setTimeout(readSensorData, 2000);
+
     });
 };
 
 // Initialize the BME280 sensor
 //
-const startBme280Sensor = () =>
+const startSensor = () =>
   bme280
     .init()
     .then(() => {
@@ -55,4 +61,4 @@ const startBme280Sensor = () =>
     })
     .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 
-module.exports = startBme280Sensor;
+module.exports = startSensor
