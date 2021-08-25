@@ -1,4 +1,6 @@
 const BME280 = require("bme280-sensor");
+const axios = require("axios");
+
 
 // The BME280 constructor options are optional.
 //
@@ -16,11 +18,26 @@ const readSensorData = () => {
     .readSensorData()
     .then((data) => {
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
-      setTimeout(readSensorData, 2000);
+
+        let sensorData = {
+            temperature: +(data && data.temperature_C),
+            humidity: +(data && data.humidity),
+            pressure: +(data && data.pressure_hPa),
+            measurementDate: new Date(),
+        };
+
+        axios.post('/user', sensorData)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+      // setTimeout(readSensorData, 2000);
     })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
-      setTimeout(readSensorData, 2000);
+      // setTimeout(readSensorData, 2000);
     });
 };
 
