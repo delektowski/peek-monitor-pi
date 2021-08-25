@@ -26,7 +26,7 @@ const readSensorData = () => {
             measurementDate: new Date(),
         };
 
-        axios.post('/user', sensorData)
+        axios.post('http://192.168.191.239:1410/sensorsData', sensorData)
             .then(function (response) {
                 console.log(response);
             })
