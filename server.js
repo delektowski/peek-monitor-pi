@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const db = require("./db/sensorsData")
-const startSensor = require("./nodeBme280");
+const startBme280Sensor = require("./nodeBme280");
 const port = 1410;
 
 //Middleware
@@ -20,15 +20,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/sensorsData", async (req, res) => {
-  try {
-    const results = await db.createSensorsData(req.body);
-    console.log("req", req);
-    res.status(201).json({ id: results[0] });
-  } catch (err) {
-    console.log("Error POST: ", err);
-  }
-});
+
 
 app.get("/sensorsData", async (req, res) => {
   try {
@@ -41,5 +33,5 @@ app.get("/sensorsData", async (req, res) => {
 
 app.listen(port,  () => {
   console.log(`Server is running on port: ${port}`)
-  startSensor()
+  startBme280Sensor()
 });
