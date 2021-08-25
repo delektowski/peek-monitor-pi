@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
   try {
     res.render("index", { value: "mocked value" });
   } catch (err) {
-    console.log("Display site error: ", err);
+    console.log("Display site error23: ", err);
   }
 });
 
