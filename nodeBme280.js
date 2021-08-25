@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const db = require("./db/sensorsData");
 
+
 // The BME280 constructor options are optional.
 //
 const options = {
@@ -37,7 +38,7 @@ const readSensorData = () => {
         }
       });
 
-      setTimeout(readSensorData, 2000);
+      // setTimeout(readSensorData, 2000);
     })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
