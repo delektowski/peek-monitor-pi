@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const db = require("./db/sensorsData")
+const db = require("./db/sensorsData");
 const startBme280Sensor = require("./nodeBme280");
 const port = 1410;
 
@@ -20,8 +20,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-
-
 app.get("/sensorsData", async (req, res) => {
   try {
     const sensorsData = await db.getAllSensorsData();
@@ -31,7 +29,7 @@ app.get("/sensorsData", async (req, res) => {
   }
 });
 
-app.listen(port,  () => {
-  console.log(`Server is running on port: ${port}`)
-  startBme280Sensor()
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+  startBme280Sensor();
 });

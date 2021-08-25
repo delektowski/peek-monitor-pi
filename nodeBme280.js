@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const db = require("./db/sensorsData");
 
-
 // The BME280 constructor options are optional.
 //
 const options = {
@@ -22,16 +21,15 @@ const readSensorData = () => {
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
 
       let sensorData = {
-        "temperature": +(data && data.temperature_C),
-        "humidity": +(data && data.humidity),
-        "pressure": +(data && data.pressure_hPa),
-        "measurementDate": new Date(),
+        temperature: +(data && data.temperature_C),
+        humidity: +(data && data.humidity),
+        pressure: +(data && data.pressure_hPa),
+        measurementDate: new Date(),
       };
       console.log("sensorData", sensorData);
       app.post("/sensorsData", async (req, res) => {
         try {
-          const results = db.createSensorsData((sensorData));
-          console.log("req23", req);
+          const results = await db.createSensorsData(sensorData);
           res.status(201).json({ id: results[0] });
         } catch (err) {
           console.log("Error POST: ", err);
