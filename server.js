@@ -12,7 +12,15 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use("/public", express.static("public"));
 
-
+app.get("/", async (req, res) => {
+  try {
+    const sensorsData = await db.getAllSensorsData();
+    console.log("sensorsData23", sensorsData)
+    res.render("index", { temperature: 23 });
+  } catch (err) {
+    console.log("Display site error23: ", err);
+  }
+});
 
 app.get("/sensorsData", async (req, res) => {
   try {

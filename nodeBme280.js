@@ -1,7 +1,5 @@
 const BME280 = require("bme280-sensor");
 const axios = require("axios");
-const express = require("express");
-const app = express();
 
 
 // The BME280 constructor options are optional.
@@ -31,13 +29,6 @@ const readSensorData = () => {
         axios.post('http://192.168.191.239:1410/sensorsData', sensorData)
             .then(function (response) {
                 console.log(response);
-                app.get("/", async (req, res) => {
-                    try {
-                        res.render("index", { temperature: sensorData.temperature });
-                    } catch (err) {
-                        console.log("Display site error23: ", err);
-                    }
-                });
             })
             .catch(function (error) {
                 console.log(error);
