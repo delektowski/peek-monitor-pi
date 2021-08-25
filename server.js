@@ -15,8 +15,7 @@ app.use("/public", express.static("public"));
 app.get("/", async (req, res) => {
   try {
     const sensorsData = await db.getAllSensorsData();
-    console.log("sensorsData23", sensorsData)
-    res.render("index", { temperature: sensorsData[sensorsData.length -1].temperature, kokos: "kokos" });
+    res.render("index", { temperature: sensorsData[sensorsData.length -1].temperature, pressure: sensorsData[sensorsData.length -1].pressure, humidity: sensorsData[sensorsData.length -1].humidity });
   } catch (err) {
     console.log("Display site error23: ", err);
   }
