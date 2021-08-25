@@ -1,7 +1,7 @@
 const knex = require("./knex");
 
-function createSensorsData(car) {
-    return knex("sensorsData").insert(car);
+function createSensorsData(sensorsData) {
+    return knex("sensorsData").insert(sensorsData);
 }
 
 function getAllSensorsData() {

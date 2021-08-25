@@ -17,8 +17,8 @@ const readSensorData = () => {
       // temperature_C, pressure_hPa, and humidity are returned by default.
       // I'll also calculate some unit conversions for display purposes.
       //
-      data.temperature_F = BME280.convertCelciusToFahrenheit(data.temperature_C);
-      data.pressure_inHg = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
+      // data.temperature_F = BME280.convertCelciusToFahrenheit(data.temperature_C);
+      // data.pressure_inHg = BME280.convertHectopascalToInchesOfMercury(data.pressure_hPa);
  
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
       setTimeout(readSensorData, 2000);
