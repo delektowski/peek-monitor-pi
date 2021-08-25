@@ -31,7 +31,7 @@ const readSensorData = () => {
       app.post("/sensorsData", async (req, res) => {
         try {
           const results = db.createSensorsData(sensorData);
-          console.log("req", req);
+          console.log("req23", req);
           res.status(201).json({ id: results[0] });
         } catch (err) {
           console.log("Error POST: ", err);
