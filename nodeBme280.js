@@ -33,7 +33,7 @@ const readSensorData = () => {
                 console.log(response);
                 app.get("/", async (req, res) => {
                     try {
-                        res.render("index", { sensorData });
+                        res.render("index", { temperature: sensorData.temperature });
                     } catch (err) {
                         console.log("Display site error23: ", err);
                     }
