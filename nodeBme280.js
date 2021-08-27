@@ -46,8 +46,7 @@ const startSensor = () =>
     .init()
     .then(() => {
       console.log("BME280 initialization succeeded");
-      setInterval(readSensorData, 5000)
-     
+      setInterval(readSensorData, 1800000);
     })
     .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 

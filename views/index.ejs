@@ -19,29 +19,28 @@
  </main>
 <footer>
     <script>
-         const getTemperatureElement = document.querySelector("#temperature")
-         const getPressureElement = document.querySelector("#pressure")
-         const getHumidityElement= document.querySelector("#humidity")
+        const getTemperatureElement = document.querySelector("#temperature");
+        const getPressureElement = document.querySelector("#pressure");
+        const getHumidityElement = document.querySelector("#humidity");
 
-         function refreshSensorsData(data) {
-		 if(data && data.sensorsData){
-			 console.log("data", data)
-			 console.log("dataSensors", data.sensorsData)
-		 const lastData = data.sensorsData[data.sensorsData.length - 1]
-             getTemperatureElement.innerText = lastData.temperature;
-             getPressureElement.innerText = lastData.pressure;
-             getHumidityElement.innerText = lastData.humidity;
-		 }
-         }
+        function refreshSensorsData(data) {
+            if (data && data.sensorsData) {
+                const lastData = data.sensorsData[data.sensorsData.length - 1];
+                getTemperatureElement.innerText = lastData.temperature;
+                getPressureElement.innerText = lastData.pressure;
+                getHumidityElement.innerText = lastData.humidity;
+            }
+        }
+                            ``
+        function getSensorsData() {
+            fetch("http://192.168.191.239:1410/sensorsData")
+                .then((resp) => resp.json())
+                .then((data) => {
+                    refreshSensorsData(data);
+                });
+        }
 
-         function getSensorsData() {
-             fetch("http://192.168.191.239:1410/sensorsData").then(resp=>resp.json()).then(data => {
-                 refreshSensorsData(data)
-             })
-         }
-
-         setInterval(getSensorsData, 6000)
-
+        setInterval(getSensorsData, 3600*1000);
     </script>
 </footer>
 </body>
