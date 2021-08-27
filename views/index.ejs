@@ -24,9 +24,10 @@
          const getHumidityElement= document.querySelector("#humidity")
 
          function refreshSensorsData(data) {
-             getTemperatureElement.innerText = data.temperature;
-             getPressureElement.innerText = data.pressure;
-             getHumidityElement.innerText = data.humidity;
+             const lastData = data[- 1]
+             getTemperatureElement.innerText = lastData.temperature;
+             getPressureElement.innerText = lastData.pressure;
+             getHumidityElement.innerText = lastData.humidity;
          }
 
          function getSensorsData() {
