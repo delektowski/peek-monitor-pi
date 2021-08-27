@@ -27,12 +27,12 @@ const readSensorData = () => {
         };
 
         axios.post('http://192.168.191.239:1410/sensorsData', sensorData)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+             .then(function (response) {
+                 console.log(response);
+             })
+             .catch(function (error) {
+                 console.log(error);
+             });
 
     })
     .catch((err) => {
