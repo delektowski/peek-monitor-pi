@@ -12,10 +12,32 @@
  <main class="container">
      <h1>Peek Monitor Pi</h1>
      <section>
-         <p>Temperatura: <%= temperature %></p>
-         <p>Ciśnienie: <%= pressure %></p>
-         <p>Wilgotność: <%= humidity %> </p>
+         <p>Temperatura: <span id="temperature"><%= temperature %></span></p>
+         <p>Ciśnienie: <span id="pressure"><%= pressure %></span></p>
+         <p>Wilgotność: <span id="humidity"><%= humidity %></span></p>
      </section>
  </main>
+<footer>
+    <script>
+         const getTemperatureElement = document.querySelector("#temperature")
+         const getPressureElement = document.querySelector("#pressure")
+         const getHumidityElement= document.querySelector("#humidity")
+
+         function refreshSensorsData(data) {
+             getTemperatureElement.innerText = data.temperature;
+             getPressureElement.innerText = data.pressure;
+             getHumidityElement.innerText = data.humidity;
+         }
+
+         function getSensorsData() {
+             fetch("http://192.168.191.239:1410/sensorsData").then(resp=>resp.json()).then(data => {
+                 refreshSensorsData(data)
+             })
+         }
+
+         setInterval(getSensorsData, 6000)
+
+    </script>
+</footer>
 </body>
 </html>

@@ -2,7 +2,7 @@ const BME280 = require("bme280-sensor");
 const axios = require("axios");
 
 // The BME280 constructor options are optional.
-//
+
 const options = {
   i2cBusNo: 1, // defaults to 1
   i2cAddress: BME280.BME280_DEFAULT_I2C_ADDRESS(), // defaults to 0x77
@@ -11,7 +11,7 @@ const options = {
 const bme280 = new BME280(options);
 
 // Read BME280 sensor data, repeat
-//
+
 const readSensorData = () => {
   bme280
     .readSensorData()
@@ -40,7 +40,7 @@ const readSensorData = () => {
 };
 
 // Initialize the BME280 sensor
-//
+
 const startSensor = () =>
   bme280
     .init()
