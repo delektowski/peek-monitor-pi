@@ -1,7 +1,6 @@
 const BME280 = require("bme280-sensor");
 const axios = require("axios");
 
-
 // The BME280 constructor options are optional.
 //
 const options = {
@@ -19,25 +18,24 @@ const readSensorData = () => {
     .then((data) => {
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
 
-        let sensorData = {
-            temperature: +(data && data.temperature_C),
-            humidity: +(data && data.humidity),
-            pressure: +(data && data.pressure_hPa),
-            measurementDate: new Date(),
-        };
+      let sensorData = {
+        temperature: +(data && data.temperature_C),
+        humidity: +(data && data.humidity),
+        pressure: +(data && data.pressure_hPa),
+        measurementDate: new Date(),
+      };
 
-        axios.post('http://192.168.191.239:1410/sensorsData', sensorData)
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+      axios
+        .post("http://192.168.191.239:1410/sensorsData", sensorData)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     })
     .catch((err) => {
       console.log(`BME280 read error: ${err}`);
-
     });
 };
 
@@ -48,8 +46,9 @@ const startSensor = () =>
     .init()
     .then(() => {
       console.log("BME280 initialization succeeded");
-      readSensorData();
+      setInterval(readSensorData, 5000)
+     
     })
     .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 
-module.exports = startSensor
+module.exports = startSensor;
