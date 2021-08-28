@@ -11,6 +11,5 @@ async function makePhoto() {
     console.error(err);
   }
 }
-module.exports = {
-  makePhoto,
-};
+module.exports = makePhoto
+

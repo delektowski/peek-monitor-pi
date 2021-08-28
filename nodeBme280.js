@@ -1,6 +1,7 @@
 const BME280 = require("bme280-sensor");
 const axios = require("axios");
-const { makePhoto } = require("./makePhoto");
+const makePhoto = require("./makePhoto");
+
 
 // The BME280 constructor options are optional.
 const options = {
