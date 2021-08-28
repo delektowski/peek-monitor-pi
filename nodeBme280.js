@@ -17,6 +17,14 @@ const readSensorData = () => {
     .readSensorData()
     .then((data) => {
       console.log(`data = ${JSON.stringify(data, null, 2)}`);
+      axios
+        .post("http://192.168.191.239:1410/createTable")
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
       let sensorData = {
         temperature: +(data && data.temperature_C),
