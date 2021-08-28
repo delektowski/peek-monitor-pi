@@ -24,7 +24,7 @@ const readSensorData = () => {
         })
         .catch(function (error) {
           console.log(error);
-        });
+        });                            3
 
       // let sensorData = {
       //   temperature: +(data && data.temperature_C),
