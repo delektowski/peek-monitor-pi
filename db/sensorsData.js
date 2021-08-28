@@ -9,19 +9,17 @@ function getAllSensorsData() {
 }
 
 function createTable(tableName) {
-  knex.hasTable(tableName).then(function (exists) {
-    if (!exists) {
-      return knex.createTable(tableName, function (table) {
+
+
+      return knex.schema.createTable("tableName", function (table) {
         table.increments();
         table.string("temperature");
         table.string("pressure");
         table.string("humidity");
         table.timestamps();
       });
-    }
-  }).catch(err=>{
-    console.log("Table creation error",err)
-  });
+
+
 }
 
 module.exports = {
