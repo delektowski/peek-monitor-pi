@@ -47,7 +47,6 @@ app.post("/sensorsData", async (req, res) => {
 
 app.post("/createTable", async (req,res) =>{
   try {
-
     await db.createTable(createTableName())
     res.status(200).json(req.body);
   } catch (err) {

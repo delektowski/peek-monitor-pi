@@ -1,25 +1,28 @@
 const knex = require("./knex");
+const {createTableName} = require("../utils/createTableName");
 
 function createSensorsData(sensorsData) {
-  return knex("sensorsData").insert(sensorsData);
+  return knex(createTableName()).insert(sensorsData);
 }
 
 function getAllSensorsData() {
-  return knex("sensorsData").select("*");
+  return knex(createTableName()).select("*");
 }
 
 function createTable(tableName) {
-
-
-      return knex.schema.createTable("tableName", function (table) {
+  knex.schema.hasTable(tableName).then(function (exists) {
+    if (!exists) {
+      return knex.schema.createTable(tableName, function (table) {
         table.increments();
-        table.string("temperature");
-        table.string("pressure");
-        table.string("humidity");
-        table.timestamps();
+        table.integer("temperature");
+        table.integer("pressure");
+        table.integer("humidity");
+        table.string("measurementDate");
       });
-
-
+    }
+  }).catch(err=>{
+    console.log("Table creation error",err)
+  });
 }
 
 module.exports = {
