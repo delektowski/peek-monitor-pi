@@ -9,7 +9,7 @@ function getAllSensorsData() {
 }
 
 function createTable(tableName) {
-  knex.schema.hasTable(tableName).then(function (exists) {
+  knex.hasTable(tableName).then(function (exists) {
     if (!exists) {
       return knex.schema.createTable(tableName, function (table) {
         table.increments();
@@ -19,6 +19,8 @@ function createTable(tableName) {
         table.timestamps();
       });
     }
+  }).catch(err=>{
+    console.log("Table creation error",err)
   });
 }
 
