@@ -11,7 +11,7 @@ module.exports = function startSensors() {
 
   const bme280 = new BME280(options);
 
-  // Read BME280 sensor data
+  // Read and save to db BME280 sensor data
   const readSensorData = async () => {
     try {
       const data = await bme280.readSensorData();
@@ -27,21 +27,18 @@ module.exports = function startSensors() {
         sensorData
       );
       console.log("saveSensorsData status", saveSensorsData.status);
-
     } catch (err) {
       console.log("Something went wrong: ", err);
     }
   };
 
-  // Initialize the BME280 sensor
-  
+  // Initialize the BME280 sensor and start making photos
     return bme280
-      .init()
-      .then(() => {
-        console.log("BME280 initialization succeeded");
-        setInterval(readSensorData, 100000);
-        setInterval(makePhoto, 7000);
-        
-      })
-      .catch((err) => console.error(`BME280 initialization failed: ${err} `));
+    .init()
+    .then(() => {
+      console.log("BME280 initialization succeeded");
+      setInterval(readSensorData, 100000);
+      setInterval(makePhoto, 7000);
+    })
+    .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 };

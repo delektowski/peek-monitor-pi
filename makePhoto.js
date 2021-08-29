@@ -9,13 +9,13 @@ module.exports = async function makePhoto() {
     fileName: "photo",
   });
 
+  const addBanner = `convert -size 640x480 photo.jpg -size 640x20 -font \"Courier\" -pointsize 12 -fill black -gravity center  caption:\"${new Date().toString()}\" -gravity south -composite photo.jpg`;
+
   await camera
     .takePhoto()
     .then((photo) => photo)
-    .then((photo) => {
-      exec(
-        `convert -size 640x480 photo.jpg -size 640x20 -font \"Courier\" -pointsize 12 -fill black -gravity center  caption:\"${new Date().toString()}\" -gravity south -composite photo.jpg`
-      );
+    .then(() => {
+      exec(addBanner);
       console.log("Photo was made on:", new Date().toString());
     });
 };
