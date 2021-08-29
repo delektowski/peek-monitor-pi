@@ -23,4 +23,4 @@ function getSensorsData() {
     });
 }
 
-setInterval(getSensorsData, 1000);
+setInterval(getSensorsData, 1800000);
