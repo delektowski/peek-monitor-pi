@@ -12,37 +12,18 @@
  <main class="container">
      <h1>Peek Monitor Pi</h1>
      <section>
-         <p>Temperatura: <span id="temperature"><%= temperature %></span></p>
-         <p>Ciśnienie: <span id="pressure"><%= pressure %></span></p>
-         <p>Wilgotność: <span id="humidity"><%= humidity %></span></p>
-         <img src="../photo.jpg" alt="photo">
+         <p>Temperatura: <span id="temperature"><%= temperature %></span> °C</p>
+         <p>Ciśnienie: <span id="pressure"><%= pressure %></span> hPa</p>
+         <p>Wilgotność: <span id="humidity"><%= humidity %></span> %</p>
+         <p>Aktualizacja: <span id="updatedAt"></span></p>
+         <div id="photo-container">
+            <img id="photo" src="../public/photo.jpg" alt="photo">
+         </div>
      </section>
  </main>
 <footer>
-    <script>
-        const getTemperatureElement = document.querySelector("#temperature");
-        const getPressureElement = document.querySelector("#pressure");
-        const getHumidityElement = document.querySelector("#humidity");
-
-        function refreshSensorsData(data) {
-            if (data && data.sensorsData) {
-                const lastData = data.sensorsData[data.sensorsData.length - 1];
-                getTemperatureElement.innerText = lastData.temperature;
-                getPressureElement.innerText = lastData.pressure;
-                getHumidityElement.innerText = lastData.humidity;
-            }
-        }
-                            ``
-        function getSensorsData() {
-            fetch("http://192.168.191.239:1410/sensorsData")
-                .then((resp) => resp.json())
-                .then((data) => {
-                    refreshSensorsData(data);
-                });
-        }
-
-        setInterval(getSensorsData, 3600*1000);
-    </script>
+    <script src="../public/scripts/refreshPage.js"></script>
+    <script src="../public/scripts/refreshPhoto.js"></script>
 </footer>
 </body>
 </html>
