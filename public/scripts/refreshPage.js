@@ -3,14 +3,25 @@ const getPressureElement = document.querySelector("#pressure");
 const getHumidityElement = document.querySelector("#humidity");
 const getupdatedAtElement = document.querySelector("#updatedAt");
 
+function getDateFormatted() {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth()+ 1}` : date.getMonth()+ 1;
+  const monthDay = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const hour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+  const minutes =
+    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  return `${monthDay}-${month}-${year}`;
+}
+
 function refreshSensorsData(data) {
   if (data && data.sensorsData) {
     const lastData = data.sensorsData[data.sensorsData.length - 1];
     getTemperatureElement.innerText = lastData.temperature;
-    getPressureElement.innerText = parseInt(lastData.pressure);
-    getHumidityElement.innerText = parseInt(lastData.humidity);
-    getHumidityElement.innerText = parseInt(lastData.humidity);
-    getupdatedAtElement.innerText = new Date().toString();
+    getPressureElement.innerText = parseFloat(lastData.pressure).toFixed(2);
+    getHumidityElement.innerText = parseFloat(lastData.humidity).toFixed(2);
+    getupdatedAtElement.innerText = getDateFormatted();
   }
 }
 
@@ -22,5 +33,5 @@ function getSensorsData() {
     });
 }
 
-setTimeout(getSensorsData, 1000);
+getSensorsData()
 setInterval(getSensorsData, 1800000);

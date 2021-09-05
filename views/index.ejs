@@ -1,27 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Peek Monitor Pi</title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css" />
 </head>
 <body>
-     <main class="container">
-         <p>Temperatura: <span id="temperature"><%= temperature %></span> °C</p>
-         <p>Ciśnienie: <span id="pressure"><%= pressure %></span> hPa</p>
-         <p>Wilgotność: <span id="humidity"><%= humidity %></span> %</p>
-         <p>Aktualizacja: <span id="updatedAt"></span></p>
-         <div id="photo-container" class="photo-container">
-            <img class="photo" id="photo" src="../public/photo.jpg" alt="photo">
-         </div>
-         <section class="temperature-chart-container">
-             <canvas id="temperatureChart"></canvas>
-         </section>
-          </main>
-<footer>
+<main class="container">
+    <div id="photo-container" class="photo-container">
+        <img class="photo" id="photo" src="../public/photo.jpg" alt="photo" />
+    </div>
+    <article class="charts-container">
+        <section class="chart-container">
+            <p>
+                Ciśnienie:
+                <span id="pressure"><%= parseFloat(pressure).toFixed(2) %></span>
+                hPa
+            </p>
+            <canvas id="pressureChart"></canvas>
+        </section>
+        <section class="chart-container">
+            <p>
+                Temperatura: <span id="temperature"><%= temperature %></span> °C
+            </p>
+            <canvas id="temperatureChart"></canvas>
+        </section>
+        <section class="chart-container">
+            <p>
+                Wilgotność:
+                <span id="humidity"><%= parseFloat(humidity).toFixed(2) %></span> %
+            </p>
+            <canvas id="humidityChart"></canvas>
+        </section>
+    </article>
+</main>
+<footer class="footer-container">
+    <p>Aktualizacja: <span id="updatedAt"></span></p>
     <script src="../public/scripts/charts/chartsLibDist.js"></script>
     <script src="../public/scripts/refreshPage.js"></script>
     <script src="../public/scripts/refreshPhoto.js"></script>

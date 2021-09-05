@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
     const sensorsData = await db.getAllSensorsData();
     const renderData = {
       temperature: sensorsData[sensorsData.length - 1].temperature,
-      pressure: sensorsData[sensorsData.length - 1].pressure,
+      pressure: Number(sensorsData[sensorsData.length - 1].pressure).toFixed(2),
       humidity: sensorsData[sensorsData.length - 1].humidity,
     };
     res.render("index", renderData);
