@@ -6,7 +6,6 @@ const getupdatedAtElement = document.querySelector("#updatedAt");
 function refreshSensorsData(data) {
   if (data && data.sensorsData) {
     const lastData = data.sensorsData[data.sensorsData.length - 1];
-    console.log("lastData.pressure", lastData.pressure);
     getTemperatureElement.innerText = lastData.temperature;
     getPressureElement.innerText = parseInt(lastData.pressure);
     getHumidityElement.innerText = parseInt(lastData.humidity);

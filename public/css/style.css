@@ -10,6 +10,8 @@ body {
 
 .photo-container {
     width: 700px;
+    display: flex;
+    justify-content: center;
 }
 
 .photo {
@@ -17,12 +19,20 @@ body {
     object-fit: cover;
 }
 
+.temperature-chart-container {
+  width: 33vw;
+}
+
 @media (max-width: 600px) {
     .photo-container {
-        width: 98vw;
+        width: 90vw;
+        display: flex;
+        justify-content: center;
     }
-
     .photo {
-        width: 100%;
+        width: 90vw;
+    }
+    .temperature-chart-container {
+        width: 90vw;
     }
 }

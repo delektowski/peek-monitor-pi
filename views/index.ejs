@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
- <main class="container">
-     <h1>Peek Monitor Pi</h1>
-     <section>
+     <main class="container">
          <p>Temperatura: <span id="temperature"><%= temperature %></span> °C</p>
          <p>Ciśnienie: <span id="pressure"><%= pressure %></span> hPa</p>
          <p>Wilgotność: <span id="humidity"><%= humidity %></span> %</p>
@@ -19,11 +17,15 @@
          <div id="photo-container" class="photo-container">
             <img class="photo" id="photo" src="../public/photo.jpg" alt="photo">
          </div>
-     </section>
- </main>
+         <section class="temperature-chart-container">
+             <canvas id="temperatureChart"></canvas>
+         </section>
+          </main>
 <footer>
+    <script src="../public/scripts/charts/chartsLibDist.js"></script>
     <script src="../public/scripts/refreshPage.js"></script>
     <script src="../public/scripts/refreshPhoto.js"></script>
+    <script src="../public/scripts/charts/temperatureChart.js"></script>
 </footer>
 </body>
 </html>
