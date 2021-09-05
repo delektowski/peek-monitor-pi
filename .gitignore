@@ -2,3 +2,4 @@ node_modules/
 .idea/
 pmpDb.sqlite3
 photo.jpg
+.DS_Store
