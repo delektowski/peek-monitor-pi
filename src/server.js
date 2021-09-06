@@ -1,9 +1,9 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const db = require("../db/sensorsData");
+const db = require("./db/sensorsData");
 const startBme280Sensor = require("./nodeBme280");
-const {createTableName} = require("../utils/createTableName");
+const {createTableName} = require("./utils/createTableName");
 const port = 1410;
 
 //Middleware
