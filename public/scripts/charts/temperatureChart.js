@@ -10,10 +10,9 @@ const green = "rgb(0, 132, 0)";
 const blue = "rgb(11,47,227)";
 const red = "rgb(132, 0, 0)";
 
-async function getChartData(chartType) {
+async function getChartData() {
   const response = await fetch(URL);
-  const data = await response.json();
-  return data;
+  return await response.json();
 }
 
 async function getSensorData(dataType) {
@@ -22,7 +21,9 @@ async function getSensorData(dataType) {
     (sum, current) => {
       const hour = new Date(current.measurementDate).getHours();
       const minutes = new Date(current.measurementDate).getMinutes();
-      const time = `${hour}:${minutes}`;
+      const doubleCharactersHour = hour < 10 ? `0${hour}` : hour;
+      const doubleCharactersMinutes = minutes < 10 ? `0${minutes}` : minutes;
+      const time = `${doubleCharactersHour}:${doubleCharactersMinutes}`;
       return { ...sum, [time]: current[dataType] };
     },
     {}
