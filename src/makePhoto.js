@@ -13,7 +13,7 @@ module.exports = async function makePhoto() {
 
   await camera
     .takePhoto()
-    .then((photo) => {
+    .then(() => {
       console.log("Photo was made on:", new Date().toString());
     })
     .then(() => {
