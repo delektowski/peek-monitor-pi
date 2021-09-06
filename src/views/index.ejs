@@ -8,6 +8,7 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Peek Monitor Pi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/style.css" />
 </head>
 <body>
@@ -18,7 +19,7 @@
     <article class="charts-container">
         <section class="chart-container">
             <p>
-                Ciśnienie:
+               <span>Ciśnienie:</span> 
                 <span id="pressure"><%= parseFloat(pressure).toFixed(2) %></span>
                 hPa
             </p>
@@ -26,7 +27,7 @@
         </section>
         <section class="chart-container">
             <p>
-                Temperatura: <span id="temperature"><%= temperature %></span> °C
+                Temperatura: <span id="temperature"><%= parseFloat(temperature).toFixed(2) %></span> °C
             </p>
             <canvas id="temperatureChart"></canvas>
         </section>

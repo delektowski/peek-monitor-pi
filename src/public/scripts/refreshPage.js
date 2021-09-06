@@ -16,7 +16,7 @@ function getDateFormatted() {
 function refreshSensorsData(data) {
   if (data && data.sensorsData) {
     const lastData = data.sensorsData[data.sensorsData.length - 1];
-    getTemperatureElement.innerText = lastData.temperature;
+    getTemperatureElement.innerText = parseFloat(lastData.temperature).toFixed(2);
     getPressureElement.innerText = parseFloat(lastData.pressure).toFixed(2);
     getHumidityElement.innerText = parseFloat(lastData.humidity).toFixed(2);
     getupdatedAtElement.innerText = getDateFormatted();
