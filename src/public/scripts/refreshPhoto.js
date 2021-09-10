@@ -7,4 +7,4 @@ function refreshPhoto() {
   getPhotoElement.src = imgSrc + queryString;
 }
 
-setInterval(refreshPhoto, 7500);
+setInterval(refreshPhoto, 5000);

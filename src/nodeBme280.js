@@ -40,7 +40,7 @@ module.exports = function startSensors() {
       readSensorData();
       makePhoto();
       setInterval(readSensorData, 1800000);
-      setInterval(makePhoto, 10000);
+      // setInterval(makePhoto, 10000);
     })
     .catch((err) => console.error(`BME280 initialization failed: ${err} `));
 };
